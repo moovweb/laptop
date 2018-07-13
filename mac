@@ -140,18 +140,9 @@ install_ruby() {
   bundle config --global jobs $((number_of_cores - 1))
 }
 
-# install_xcode() {
-#   local darwin_version
-#   darwin_version=$(uname -r
-#   if ! command -v gcc; then
-#     if (( ${darwin_version%%.*} > 12 )); then
-#     else
-#     fi
-#   fi
-# }
-
 update_shell() {
-  local shell_path;
+  local shell_path
+
   shell_path="$(command -v zsh)"
 
   fancy_echo "Changing your shell to zsh ..."
@@ -181,7 +172,6 @@ case "${SHELL}" in
     ;;
 esac
 
-install_xcode
 install_homebrew
 
 if brew list | grep -Fq brew-cask; then
