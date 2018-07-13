@@ -125,6 +125,16 @@ install_nodejs() {
   install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
   bash "${HOME}/.asdf/plugins/nodejs/bin/import-release-team-keyring"
   install_asdf_language "nodejs" "${NODE_VERSION}"
+
+  echo "node -> $(node -v)"
+
+  fancy_echo "Upgrading npm to latest version ..."
+  npm install -g npm@latest
+
+  if ! command -v yarn; then
+    fancy_echo "Installing yarn ..."
+    brew install yarn
+  fi
 }
 
 install_ruby() {
@@ -133,7 +143,9 @@ install_ruby() {
   install_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
   install_asdf_language "ruby" "${RUBY_VERSION}"
 
+  fancy_echo "Upgrading Rubygems to latest version ..."
   gem update --system
+  fancy_echo "Installing/updating Bundler ..."
   gem_install_or_update "bundler"
 
   number_of_cores=$(sysctl -n hw.ncpu)
