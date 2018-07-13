@@ -232,7 +232,6 @@ brew "garethr/kubeval/kubeval"
 # Testing
 brew "bats"
 brew "shellcheck"
-brew "codeclimate/formulae/codeclimate"
 
 # Heroku
 brew "heroku"
@@ -258,7 +257,7 @@ cask "firefox"
 cask "google-chrome"
 
 # Security
-cask "gpg-suite"
+cask "gpgtools"
 cask "1password"
 cask "keybase"
 
