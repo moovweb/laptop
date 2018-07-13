@@ -93,6 +93,17 @@ install_asdf_plugin() {
   fi
 }
 
+install_circleci_cli() {
+  local path="/usr/local/bin/circleci"
+
+  fancy_echo "Installing CircleCI CLI (`circleci`) ..."
+
+  curl -o ${path} \
+    https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci
+
+  chmod +x ${path}
+}
+
 install_homebrew() {
   if ! command -v brew >&-; then
     fancy_echo "Installing Homebrew ..."
@@ -198,7 +209,6 @@ cask "zerotier-one"
 cask "iterm2"
 brew "universal-ctags", args: ["HEAD"]
 brew "gettext"
-brew "openssl"
 brew "the_silver_searcher"
 brew "tmux"
 brew "tmate"
@@ -207,6 +217,17 @@ brew "vim"
 brew "watchman"
 brew "zsh"
 brew "jq"
+
+# Docker/Kubernetes
+cask "docker-edge"
+cask "minikube"
+brew "kubernetes-cli"
+brew "kops"
+brew "kube-ps1"
+brew "kubectx"
+brew "kubernetes-helm"
+brew "stern"
+brew "garethr/kubeval/kubeval"
 
 # Testing
 brew "bats"
@@ -219,23 +240,11 @@ brew "heroku"
 # GitHub
 brew "git"
 brew "hub"
-cask "github-desktop"
+cask "github"
 
 # AWS
 brew "awscli"
 brew "cli53"
-
-# Docker/Kubernetes
-cask "docker-edge"
-cask "virtualbox"
-cask "minikube"
-brew "kubernetes-cli"
-brew "kops"
-brew "kube-ps1"
-brew "kubectx"
-brew "kubernetes-helm"
-brew "stern"
-brew "garethr/kubeval/kubeval"
 
 # Image manipulation
 brew "imagemagick"
@@ -265,6 +274,8 @@ brew unlink heroku && brew link --force heroku
 install_asdf
 install_ruby
 install_nodejs
+
+install_circleci_cli
 
 if [ -f "${HOME}/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
