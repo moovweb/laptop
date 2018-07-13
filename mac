@@ -96,7 +96,7 @@ install_asdf_plugin() {
 install_circleci_cli() {
   local path="/usr/local/bin/circleci"
 
-  fancy_echo "Installing CircleCI CLI (`circleci`) ..."
+  fancy_echo "Installing CircleCI CLI (circleci) ..."
 
   curl -o ${path} \
     https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci
