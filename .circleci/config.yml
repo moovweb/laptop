@@ -7,5 +7,5 @@ jobs:
       - checkout
       - run: brew update
       - run: brew install shellcheck
-      - run: shellcheck mac -e SC2039
-      - run: sh mac
+      - run: shellcheck -s bash mac
+      - run: bash mac
